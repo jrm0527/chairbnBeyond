@@ -8,7 +8,7 @@ function Reservation(props) {
   const fetchTitleData = async () => {
     try {
       const response = await fetch(
-        `http://localhost:3050/api/title/${props.listingId}`
+        `http://localhost:3005/api/title/${props.listingId}`
       );
       const data = await response.json();
       console.log(data);

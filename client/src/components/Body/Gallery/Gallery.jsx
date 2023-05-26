@@ -5,7 +5,7 @@ import styles from "./Gallery.module.css";
 function Gallery(props) {
   const [gallery, setGallery] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:3010/api/gallery/photo_url/${props.listingId}`)
+    fetch(`http://localhost:3005/api/gallery/photo_url/${props.listingId}`)
       .then((res) => res.json())
       .then((data) => {
         setGallery(data);

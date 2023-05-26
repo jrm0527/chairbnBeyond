@@ -17,7 +17,7 @@ function Amenities(props) {
     setIsModalOpen(false);
   };
   useEffect(() => {
-    fetch(`http://localhost:3002/api/amenities/${props.listingId}`)
+    fetch(`http://localhost:3005/api/amenities/${props.listingId}`)
       .then((res) => res.json())
       .then((data) => {
         setAmenities(data);
@@ -28,7 +28,7 @@ function Amenities(props) {
       })
       .then(
         fetch(
-          `http://localhost:3002/api/amenities/ten/${props.listingId}`
+          `http://localhost:3005/api/amenities/ten/${props.listingId}`
         ).then((res) => res.json().then((data) => {
           setTenAmenities(data);
           console.log(tenAmenities);

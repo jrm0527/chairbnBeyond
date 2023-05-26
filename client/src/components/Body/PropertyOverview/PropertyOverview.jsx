@@ -13,7 +13,7 @@ function PropertyOverview(props) {
   //     });
   // }, []);
   useEffect(() => {
-    fetch(`http://localhost:4001/api/users/${props.listingId}`)
+    fetch(`http://localhost:3005/api/users/${props.listingId}`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data)

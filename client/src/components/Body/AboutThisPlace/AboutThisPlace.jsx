@@ -5,7 +5,7 @@ function AboutThisPlace() {
   const [aboutData, setAboutData] = useState(null);
 
   const fetchAboutData = async () => {
-    return fetch(`http://localhost:3003/api/about/2`)
+    return fetch(`http://localhost:3005/api/about/2`)
       .then((response) => response.json())
       .then((data) => {
         setAboutData(data);

@@ -10,7 +10,7 @@ function HostInfo(props) {
   const [hostPhoto, setHostPhoto] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:4001/api/users/${props.listingId}`)
+    fetch(`http://localhost:3005/api/users/${props.listingId}`)
       .then((res) => res.json())
       .then((data) => {
         setName(data.fname);
@@ -18,7 +18,7 @@ function HostInfo(props) {
   }, []);
 
   useEffect(() => {
-    fetch(`http://localhost:4001/api/hosts/about/${props.listingId}`)
+    fetch(`http://localhost:3005/api/hosts/about/${props.listingId}`)
       .then((res) => res.json())
       .then((data) => {
         setAboutHost(data.about);
@@ -26,7 +26,7 @@ function HostInfo(props) {
   }, []);
 
   useEffect(() => {
-    fetch(`http://localhost:4001/api/reviews`)
+    fetch(`http://localhost:3005/api/reviews`)
       .then((res) => res.json())
       .then((data) => {
         setNumOfReviews(data.length);
@@ -34,7 +34,7 @@ function HostInfo(props) {
   }, []);
 
   useEffect(() => {
-    fetch(`http://localhost:4001/api/hosts/photo/${props.listingId}`)
+    fetch(`http://localhost:3005/api/hosts/photo/${props.listingId}`)
       .then((res) => res.json())
       .then((data) => {
         setHostPhoto(data.photo_url);

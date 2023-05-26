@@ -17,7 +17,7 @@ function Map(props) {
   }
 
   useEffect(() => {
-    fetch(`http://localhost:4000/api/location/${props.listingId}`)
+    fetch(`http://localhost:3005/api/location/${props.listingId}`)
       .then((res) => res.json())
       .then((data) => {
         setLocation({ latitude: data.latitude, longitude: data.longitude });
