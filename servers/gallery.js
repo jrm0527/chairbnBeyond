@@ -5,7 +5,7 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3010;
 const { Client } = require("pg");
-const db = new Client({ connectionString: process.env.DATABASE });
+const db = new Client({ connectionString: process.env.DATABASE5 });
 db.connect();
 const cors = require("cors");
 

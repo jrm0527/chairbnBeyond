@@ -6,7 +6,7 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3002;
 const { Client } = require("pg");
-const db = new Client({ connectionString: process.env.DATABASE });
+const db = new Client({ connectionString: process.env.DATABASE6 });
 
 db.connect();
 
@@ -58,5 +58,6 @@ app.get("/api/amenities/ten/:id", (req, res) => {
 });
 
 app.listen(PORT, () => {
+  console.log(process.env.DATABASE6);
   console.log(`Amenities Server is listening on port ${PORT}...`);
 });

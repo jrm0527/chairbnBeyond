@@ -5,7 +5,7 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3003;
 const { Client } = require("pg");
-const db = new Client({ connectionString: process.env.DATABASE });
+const db = new Client({ connectionString: process.env.DATABASE7 });
 db.connect();
 const cors = require("cors");
 
@@ -33,5 +33,5 @@ app.get("/api/about/:id", (req, res) => {
 
 //start the server
 app.listen(PORT, () => {
-  console.log(`AboutThisPlace server is listening on port ${PORT}...`);
+  console.log(`AboutThisPlace (DB7) server is listening on port ${PORT}...`);
 });

@@ -6,7 +6,7 @@ const { Pool } = require("pg");
 const cors = require("cors");
 
 const pool = new Pool({
-  connectionString: process.env.DATABASE,
+  connectionString: process.env.DATABASE2,
 });
 
 app.use(express.json());

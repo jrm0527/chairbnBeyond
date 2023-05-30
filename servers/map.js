@@ -7,7 +7,7 @@ const app = express();
 app.use(cors());
 const PORT = process.env.PORT || 4000;
 const { Pool } = require("pg");
-const pool = new Pool({ connectionString: process.env.DATABASE });
+const pool = new Pool({ connectionString: process.env.DATABASE3 });
 
 pool.connect();
 

@@ -1,12 +1,66 @@
 version: "3"
 
 services:
-  pg-docker:
+  chairbnb7:
     image: postgres
-    container_name: pg-docker
+    container_name: chairbnb7
     environment:
       - POSTGRES_PASSWORD=docker
     ports:
-      - 5432:5432
+      - 5437:5432
+    volumes:
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+  chairbnb6:
+    image: postgres
+    container_name: chairbnb6
+    environment:
+      - POSTGRES_PASSWORD=docker
+    ports:
+      - 5436:5432
+    volumes:
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+  chairbnb5:
+    image: postgres
+    container_name: chairbnb5
+    environment:
+      - POSTGRES_PASSWORD=docker
+    ports:
+      - 5435:5432
+    volumes:
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+  chairbnb4:
+    image: postgres
+    container_name: chairbnb4
+    environment:
+      - POSTGRES_PASSWORD=docker
+    ports:
+      - 5434:5432
+    volumes:
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+  chairbnb3:
+    image: postgres
+    container_name: chairbnb3
+    environment:
+      - POSTGRES_PASSWORD=docker
+    ports:
+      - 5433:5432
+    volumes:
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+  chairbnb2:
+    image: postgres
+    container_name: chairbnb2
+    environment:
+      - POSTGRES_PASSWORD=docker
+    ports:
+      - 5431:5432
+    volumes:
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+  chairbnb1:
+    image: postgres
+    container_name: chairbnb1
+    environment:
+      - POSTGRES_PASSWORD=docker
+    ports:
+      - 5430:5432
     volumes:
       - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
