@@ -4,7 +4,7 @@ import styles from "./TitleBar.module.css";
 
 function TitleBar(props) {
   const { isLoading, isError, data, error } = useQuery(
-    ["title"],
+    [`title${props.listingId}`],
     () =>
       axios
         .get(`http://localhost:3050/api/title/${props.listingId}`)

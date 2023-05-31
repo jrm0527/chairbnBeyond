@@ -4,14 +4,11 @@ import { useQuery } from "react-query";
 
 function PropertyOverview(props) {
   const { isLoading, isError, data, error, refetch } = useQuery(
-    ["property"],
+    [`property${props.listingId}`],
     () =>
       axios
         .get(`http://localhost:4001/api/users/${props.listingId}`)
-        .then((res) => res.data),
-    {
-      staleTime: 1000 * 60 * 10,
-    }
+        .then((res) => res.data)
   );
 
   if (isLoading) return "Loading...";

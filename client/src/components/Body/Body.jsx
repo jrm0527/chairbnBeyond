@@ -25,7 +25,7 @@ function Body(props) {
             <PropertyOverview listingId={props.listingId} />
             <ChairCover />
             <HostInfo listingId={props.listingId} />
-            <AboutThisPlace />
+            <AboutThisPlace listingId={props.listingId} />
             <Amenities listingId={props.listingId} />
             <Calendar />
           </div>

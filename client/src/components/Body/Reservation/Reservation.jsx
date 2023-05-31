@@ -1,25 +1,23 @@
-import { useEffect, useState } from "react";
 import styles from "./Reservation.module.css";
 import Guests from "./Guests/Guests";
+import axios from "axios";
+import { useQuery } from "react-query";
 
 function Reservation(props) {
-  const [titleData, setTitleData] = useState([]);
+  const {
+    isLoading,
+    isError,
+    data: titleData,
+    error,
+  } = useQuery([`reservation${props.listingId}`], () =>
+    axios
+      .get(`http://localhost:3050/api/title/${props.listingId}`)
+      .then((res) => res.data)
+  );
 
-  const fetchTitleData = async () => {
-    try {
-      const response = await fetch(
-        `http://localhost:3050/api/title/${props.listingId}`
-      );
-      const data = await response.json();
-      setTitleData(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  if (isLoading) return "Loading...";
 
-  useEffect(() => {
-    fetchTitleData();
-  }, []);
+  if (error) return "An error has occurred: " + error.message;
 
   return (
     <>

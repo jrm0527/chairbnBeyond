@@ -1,23 +1,34 @@
 import styles from "./Gallery.module.css";
 import axios from "axios";
-import { useQuery } from "react-query";
+import { useQuery, QueryCache, useQueryClient } from "react-query";
 
+const queryCache = new QueryCache({
+  onError: (error) => {
+    console.log(error);
+  },
+  onSuccess: (data) => {
+    console.log(data);
+  },
+  onSettled: (data, error) => {
+    console.log(data, error);
+  },
+});
 function Gallery(props) {
-  const { isLoading, isError, data, error } = useQuery(
-    ["gallery"],
+  const queryClient = useQueryClient();
+  // console.log("qc ", queryClient.getQueryData("gallery"));
+  const { isLoading, isError, data, error, refetch } = useQuery(
+    [`gallery${props.listingId}`],
     () =>
       axios
         .get(`http://localhost:3010/api/gallery/photo_url/${props.listingId}`)
-        .then((res) => res.data),
-    {
-      staleTime: 1000 * 60 * 10,
-    }
+        .then((res) => res.data)
   );
 
   if (isLoading) return "Loading...";
 
   if (error) return "An error has occurred: " + error.message;
 
+  console.log(queryCache.find(["gallery"]));
   return (
     <div className={styles["img-container"]}>
       <div className={styles.item1}>

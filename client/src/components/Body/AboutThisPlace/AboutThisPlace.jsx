@@ -2,14 +2,13 @@ import axios from "axios";
 import { useQuery } from "react-query";
 import styles from "./AboutThisPlace.module.css";
 
-function AboutThisPlace() {
+function AboutThisPlace(props) {
   const { isLoading, isError, data, error } = useQuery(
-    ["about"],
+    [`about${props.listingId}`],
     () =>
-      axios.get("http://localhost:3003/api/about/2").then((res) => res.data),
-    {
-      staleTime: 1000 * 60 * 10,
-    }
+      axios
+        .get(`http://localhost:3003/api/about/${props.listingId}`)
+        .then((res) => res.data)
   );
 
   if (isLoading) return "Loading...";

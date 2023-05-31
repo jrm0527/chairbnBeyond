@@ -20,15 +20,10 @@ function Amenities(props) {
     isError: isErrorAmenities,
     data: amenities,
     error: errorAmenities,
-  } = useQuery(
-    ["amenities"],
-    () =>
-      axios
-        .get(`http://localhost:3002/api/amenities/${props.listingId}`)
-        .then((res) => res.data),
-    {
-      staleTime: 1000 * 60 * 10,
-    }
+  } = useQuery([`amenities${props.listingId}`], () =>
+    axios
+      .get(`http://localhost:3002/api/amenities/${props.listingId}`)
+      .then((res) => res.data)
   );
 
   const {
@@ -37,7 +32,7 @@ function Amenities(props) {
     data: tenAmenities,
     error: errorTenAmenities,
   } = useQuery(
-    ["tenAmenities"],
+    [`tenAmenities${props.listingId}`],
     () =>
       axios
         .get(`http://localhost:3002/api/amenities/ten/${props.listingId}`)

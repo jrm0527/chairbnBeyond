@@ -10,67 +10,41 @@ function HostInfo(props) {
     isError: isErrorName,
     data: name,
     error: errorName,
-  } = useQuery(
-    ["name"],
-    () =>
-      axios
-        .get(`http://localhost:4001/api/users/${props.listingId}`)
-        .then((res) => res.data),
-    {
-      staleTime: 1000 * 60 * 10,
-    }
+  } = useQuery([`name${props.listingId}`], () =>
+    axios
+      .get(`http://localhost:4001/api/users/${props.listingId}`)
+      .then((res) => res.data)
   );
-
-  // name = name[0].fname;
 
   const {
     isLoading: isLoadingAboutHost,
     isError: isErrorAboutHost,
     data: aboutHost,
     error: errorAboutHost,
-  } = useQuery(
-    ["aboutHost"],
-    () =>
-      axios
-        .get(`http://localhost:4001/api/hosts/about/${props.listingId}`)
-        .then((res) => res.data),
-    {
-      staleTime: 1000 * 60 * 10,
-    }
+  } = useQuery([`aboutHost${props.listingId}`], () =>
+    axios
+      .get(`http://localhost:4001/api/hosts/about/${props.listingId}`)
+      .then((res) => res.data)
   );
-
-  // aboutHost = aboutHost[0].about;
 
   const {
     isLoading: isLoadingNumOfReviews,
     isError: isErrorNumOfReviews,
     data: numOfReviews,
     error: errorNumOfReviews,
-  } = useQuery(
-    ["numOfReviews"],
-    () =>
-      axios.get(`http://localhost:4001/api/reviews`).then((res) => res.data),
-    {
-      staleTime: 1000 * 60 * 10,
-    }
+  } = useQuery([`numOfReviews${props.listingId}`], () =>
+    axios.get(`http://localhost:4001/api/reviews`).then((res) => res.data)
   );
-
-  // numOfReviews = numOfReviews.length;
 
   const {
     isLoading: isLoadingHostPhoto,
     isError: isErrorHostPhoto,
     data: hostPhoto,
     error: errorHostPhoto,
-  } = useQuery(
-    ["hostPhoto"],
-    () =>
-      axios
-        .get(`http://localhost:4001/api/hosts/photo/${props.listingId}`)
-        .then((res) => res.data),
-    {
-      staleTime: 1000 * 60 * 10,
-    }
+  } = useQuery([`hostPhoto${props.listingId}`], () =>
+    axios
+      .get(`http://localhost:4001/api/hosts/photo/${props.listingId}`)
+      .then((res) => res.data)
   );
 
   if (

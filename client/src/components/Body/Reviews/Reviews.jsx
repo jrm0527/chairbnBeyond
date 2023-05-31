@@ -3,22 +3,20 @@ import { useQuery } from "react-query";
 import styles from "./Reviews.module.css";
 
 export default function Reviews(props) {
-  const { isLoading, isError, data, error } = useQuery(
-    ["reviews"],
-    () =>
-      axios
-        .get(`http://localhost:3005/api/reviews/${props.listingId}`)
-        .then((res) => res.data),
-    {
-      staleTime: 1000 * 60 * 10,
-    }
+  const {
+    isLoading,
+    isError,
+    data: reviews,
+    error,
+  } = useQuery([`reviews${props.listingId}`], () =>
+    axios
+      .get(`http://localhost:3005/api/reviews/${props.listingId}`)
+      .then((res) => res.data)
   );
 
   if (isLoading) return "Loading...";
 
   if (error) return "An error has occurred: " + error.message;
-
-  const reviews = data;
 
   const averageRating =
     reviews.length > 0
