@@ -168,7 +168,7 @@ export default function Reviews(props) {
                 <div className={styles["reviews-section"]}>
                   <div className={styles["reviews-section-container"]}>
                     <div className={styles["reviews-section-spacing"]}>
-                      {reviews.map((review, index) => (
+                      {reviews.slice(0, 6).map((review, index) => (
                         <div
                           className={styles["individual-review-container-1"]}
                           key={index}
