@@ -1,25 +1,19 @@
-import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { useQuery } from "react-query";
 import styles from "./Reviews.module.css";
 
 export default function Reviews(props) {
-  const [reviews, setReviews] = useState([]);
+  const { isLoading, isError, data, error } = useQuery(["reviews"], () =>
+    axios
+      .get(`http://localhost:3005/api/reviews/${props.listingId}`)
+      .then((res) => res.data)
+  );
 
-  useEffect(() => {
-    const fetchReviews = async () => {
-      try {
-        const response = await fetch(
-          `http://localhost:3005/api/reviews/${props.listingId}`
-        );
-        const data = await response.json();
-        setReviews(data);
-        // console.log("fetched reviews:", data);
-      } catch (error) {
-        console.error("Error fetching reviews:", error);
-      }
-    };
+  if (isLoading) return "Loading...";
 
-    fetchReviews();
-  }, []);
+  if (error) return "An error has occurred: " + error.message;
+
+  const reviews = data;
 
   const averageRating =
     reviews.length > 0

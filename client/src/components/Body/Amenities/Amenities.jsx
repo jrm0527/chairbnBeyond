@@ -1,13 +1,11 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import styles from "./Amenities.module.css";
 import Modal from "./Modal/Modal.jsx";
-import { useParams } from "react-router-dom";
+import axios from "axios";
+import { useQuery } from "react-query";
 
 function Amenities(props) {
-  const [amenities, setAmenities] = useState([]);
-  const [tenAmenities, setTenAmenities] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  //const listingId = props.listingId;
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -16,25 +14,37 @@ function Amenities(props) {
   const closeModal = () => {
     setIsModalOpen(false);
   };
-  useEffect(() => {
-    fetch(`http://localhost:3002/api/amenities/${props.listingId}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setAmenities(data);
-        console.log(amenities);
-      })
-      .catch((err) => {
-        console.error("Error fetching amenities: ", err);
-      })
-      .then(
-        fetch(
-          `http://localhost:3002/api/amenities/ten/${props.listingId}`
-        ).then((res) => res.json().then((data) => {
-          setTenAmenities(data);
-          console.log(tenAmenities);
-        }))
-      );
-  }, []);
+
+  const {
+    isLoading: isLoadingAmenities,
+    isError: isErrorAmenities,
+    data: amenities,
+    error: errorAmenities,
+  } = useQuery(["amenities"], () =>
+    axios
+      .get(`http://localhost:3002/api/amenities/${props.listingId}`)
+      .then((res) => res.data)
+  );
+
+  const {
+    isLoading: isLoadingTenAmenities,
+    isError: isErrorTenAmenities,
+    data: tenAmenities,
+    error: errorTenAmenities,
+  } = useQuery(["tenAmenities"], () =>
+    axios
+      .get(`http://localhost:3002/api/amenities/ten/${props.listingId}`)
+      .then((res) => res.data)
+  );
+
+  if (isLoadingAmenities || isLoadingTenAmenities) return "Loading...";
+
+  if (isErrorAmenities)
+    return "An error has occurred: " + errorAmenities.message;
+
+  if (isErrorTenAmenities)
+    return "An error has occurred: " + errorTenAmenities.message;
+
   return (
     <div className={styles["master_container"]}>
       <div className={styles["amenities-div"]}>
