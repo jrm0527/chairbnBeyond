@@ -3,10 +3,15 @@ import { useQuery } from "react-query";
 import styles from "./TitleBar.module.css";
 
 function TitleBar(props) {
-  const { isLoading, isError, data, error } = useQuery(["title"], () =>
-    axios
-      .get(`http://localhost:3050/api/title/${props.listingId}`)
-      .then((res) => res.data)
+  const { isLoading, isError, data, error } = useQuery(
+    ["title"],
+    () =>
+      axios
+        .get(`http://localhost:3050/api/title/${props.listingId}`)
+        .then((res) => res.data),
+    {
+      staleTime: 1000 * 60 * 10,
+    }
   );
 
   if (isLoading) return "Loading...";

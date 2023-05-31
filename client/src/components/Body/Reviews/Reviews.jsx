@@ -3,10 +3,15 @@ import { useQuery } from "react-query";
 import styles from "./Reviews.module.css";
 
 export default function Reviews(props) {
-  const { isLoading, isError, data, error } = useQuery(["reviews"], () =>
-    axios
-      .get(`http://localhost:3005/api/reviews/${props.listingId}`)
-      .then((res) => res.data)
+  const { isLoading, isError, data, error } = useQuery(
+    ["reviews"],
+    () =>
+      axios
+        .get(`http://localhost:3005/api/reviews/${props.listingId}`)
+        .then((res) => res.data),
+    {
+      staleTime: 1000 * 60 * 10,
+    }
   );
 
   if (isLoading) return "Loading...";

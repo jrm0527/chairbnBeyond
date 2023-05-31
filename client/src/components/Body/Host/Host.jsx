@@ -10,10 +10,15 @@ function HostInfo(props) {
     isError: isErrorName,
     data: name,
     error: errorName,
-  } = useQuery(["name"], () =>
-    axios
-      .get(`http://localhost:4001/api/users/${props.listingId}`)
-      .then((res) => res.data)
+  } = useQuery(
+    ["name"],
+    () =>
+      axios
+        .get(`http://localhost:4001/api/users/${props.listingId}`)
+        .then((res) => res.data),
+    {
+      staleTime: 1000 * 60 * 10,
+    }
   );
 
   // name = name[0].fname;
@@ -23,10 +28,15 @@ function HostInfo(props) {
     isError: isErrorAboutHost,
     data: aboutHost,
     error: errorAboutHost,
-  } = useQuery(["aboutHost"], () =>
-    axios
-      .get(`http://localhost:4001/api/hosts/about/${props.listingId}`)
-      .then((res) => res.data)
+  } = useQuery(
+    ["aboutHost"],
+    () =>
+      axios
+        .get(`http://localhost:4001/api/hosts/about/${props.listingId}`)
+        .then((res) => res.data),
+    {
+      staleTime: 1000 * 60 * 10,
+    }
   );
 
   // aboutHost = aboutHost[0].about;
@@ -36,8 +46,13 @@ function HostInfo(props) {
     isError: isErrorNumOfReviews,
     data: numOfReviews,
     error: errorNumOfReviews,
-  } = useQuery(["numOfReviews"], () =>
-    axios.get(`http://localhost:4001/api/reviews`).then((res) => res.data)
+  } = useQuery(
+    ["numOfReviews"],
+    () =>
+      axios.get(`http://localhost:4001/api/reviews`).then((res) => res.data),
+    {
+      staleTime: 1000 * 60 * 10,
+    }
   );
 
   // numOfReviews = numOfReviews.length;
@@ -47,10 +62,15 @@ function HostInfo(props) {
     isError: isErrorHostPhoto,
     data: hostPhoto,
     error: errorHostPhoto,
-  } = useQuery(["hostPhoto"], () =>
-    axios
-      .get(`http://localhost:4001/api/hosts/photo/${props.listingId}`)
-      .then((res) => res.data)
+  } = useQuery(
+    ["hostPhoto"],
+    () =>
+      axios
+        .get(`http://localhost:4001/api/hosts/photo/${props.listingId}`)
+        .then((res) => res.data),
+    {
+      staleTime: 1000 * 60 * 10,
+    }
   );
 
   if (

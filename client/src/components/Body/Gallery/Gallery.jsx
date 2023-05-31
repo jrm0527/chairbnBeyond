@@ -3,10 +3,15 @@ import axios from "axios";
 import { useQuery } from "react-query";
 
 function Gallery(props) {
-  const { isLoading, isError, data, error } = useQuery(["gallery"], () =>
-    axios
-      .get(`http://localhost:3010/api/gallery/photo_url/${props.listingId}`)
-      .then((res) => res.data)
+  const { isLoading, isError, data, error } = useQuery(
+    ["gallery"],
+    () =>
+      axios
+        .get(`http://localhost:3010/api/gallery/photo_url/${props.listingId}`)
+        .then((res) => res.data),
+    {
+      staleTime: 1000 * 60 * 10,
+    }
   );
 
   if (isLoading) return "Loading...";

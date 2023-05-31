@@ -8,7 +8,13 @@ import {
   RouterProvider,
 } from "react-router-dom";
 
-const queryClient = new QueryClient({});
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: 2,
+    },
+  },
+});
 
 function App() {
   const routeDefinitions = createRoutesFromElements(

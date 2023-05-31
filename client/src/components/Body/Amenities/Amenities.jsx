@@ -20,10 +20,15 @@ function Amenities(props) {
     isError: isErrorAmenities,
     data: amenities,
     error: errorAmenities,
-  } = useQuery(["amenities"], () =>
-    axios
-      .get(`http://localhost:3002/api/amenities/${props.listingId}`)
-      .then((res) => res.data)
+  } = useQuery(
+    ["amenities"],
+    () =>
+      axios
+        .get(`http://localhost:3002/api/amenities/${props.listingId}`)
+        .then((res) => res.data),
+    {
+      staleTime: 1000 * 60 * 10,
+    }
   );
 
   const {
@@ -31,10 +36,15 @@ function Amenities(props) {
     isError: isErrorTenAmenities,
     data: tenAmenities,
     error: errorTenAmenities,
-  } = useQuery(["tenAmenities"], () =>
-    axios
-      .get(`http://localhost:3002/api/amenities/ten/${props.listingId}`)
-      .then((res) => res.data)
+  } = useQuery(
+    ["tenAmenities"],
+    () =>
+      axios
+        .get(`http://localhost:3002/api/amenities/ten/${props.listingId}`)
+        .then((res) => res.data),
+    {
+      staleTime: 1000 * 60 * 10,
+    }
   );
 
   if (isLoadingAmenities || isLoadingTenAmenities) return "Loading...";

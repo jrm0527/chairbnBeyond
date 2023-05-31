@@ -11,7 +11,6 @@ function Reservation(props) {
         `http://localhost:3050/api/title/${props.listingId}`
       );
       const data = await response.json();
-      console.log(data);
       setTitleData(data);
     } catch (error) {
       console.log(error);
@@ -68,8 +67,23 @@ function Reservation(props) {
         </div>
         <div className={styles["costBreakdown"]}>
           <div className={styles["roomFee"]}>
-            <u>${titleData.length > 0 ? (<span>{titleData[0].price}</span>) : (<span>Loading...</span>)} x 5 nights</u>
-            <div>${titleData.length > 0 ? (<span>{(titleData[0].price)*5}</span>) : (<span>Loading...</span>)}</div>
+            <u>
+              $
+              {titleData.length > 0 ? (
+                <span>{titleData[0].price}</span>
+              ) : (
+                <span>Loading...</span>
+              )}{" "}
+              x 5 nights
+            </u>
+            <div>
+              $
+              {titleData.length > 0 ? (
+                <span>{titleData[0].price * 5}</span>
+              ) : (
+                <span>Loading...</span>
+              )}
+            </div>
           </div>
           <div className={styles["cleaningFee"]}>
             <u>Cleaning fee</u>
@@ -82,7 +96,14 @@ function Reservation(props) {
         </div>
         <div className={styles["totalFee"]}>
           <div>Total before taxes</div>
-          <div>${titleData.length > 0 ? (<span>{((titleData[0].price)*5)+55}</span>) : (<span>Loading...</span>)}</div>
+          <div>
+            $
+            {titleData.length > 0 ? (
+              <span>{titleData[0].price * 5 + 55}</span>
+            ) : (
+              <span>Loading...</span>
+            )}
+          </div>
         </div>
       </div>
     </>

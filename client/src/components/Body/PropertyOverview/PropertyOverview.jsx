@@ -8,7 +8,10 @@ function PropertyOverview(props) {
     () =>
       axios
         .get(`http://localhost:4001/api/users/${props.listingId}`)
-        .then((res) => res.data)
+        .then((res) => res.data),
+    {
+      staleTime: 1000 * 60 * 10,
+    }
   );
 
   if (isLoading) return "Loading...";
