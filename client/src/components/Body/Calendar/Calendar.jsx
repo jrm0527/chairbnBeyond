@@ -1,141 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./Calendar.module.css";
-
-// export default function Calendar() {
-//   return (
-//     <div className={styles["calendar-component"]}>
-//       <div className={styles["group-section"]}>
-//         <div className={styles["top-border"]}></div>
-//         <div className={styles["inner-container"]}>
-//           <div className={styles["inline-availability-calendar"]}>
-//             <div className={styles["header-container"]}>
-//               <div className={styles["nights-location-container"]}>
-//                 <section className={styles["nights-location-section"]}>
-//                   <h2 className={styles["nights-location-text"]}>
-//                     5 nights in Minot
-//                   </h2>
-//                 </section>
-//               </div>
-//               <div className={styles["date-range-container"]}>
-//                 <div className={styles["date-range"]}>
-//                   May 25, 2023 - May 30, 2023
-//                 </div>
-//               </div>
-//             </div>
-//             <div className={styles["calendars-container-1"]}>
-//               <div className={styles["calendars-container-2"]}>
-//                 <div className={styles["calendars-container-3"]}>
-//                   <div className={styles["calendars-container-4"]}>
-//                     <div className={styles["calendars-container-5"]}>
-//                       <div className={styles["calendars-container-6"]}>
-//                         <div className={styles["calendars-container-7"]}>
-//                           <div className={styles["calendar-days-container"]}>
-//                             <div className={styles["days-container"]}>
-//                               <ul className={styles["days-list"]}>
-//                                 <li className={styles.day}>Su</li>
-//                                 <li className={styles.day}>Mo</li>
-//                                 <li className={styles.day}>Tu</li>
-//                                 <li className={styles.day}>We</li>
-//                                 <li className={styles.day}>Th</li>
-//                                 <li className={styles.day}>Fr</li>
-//                                 <li className={styles.day}>Sa</li>
-//                               </ul>
-//                             </div>
-//                             <div className={styles["days-container"]}>
-//                               <ul className={styles["days-list"]}>
-//                                 <li className={styles.day}>Su</li>
-//                                 <li className={styles.day}>Mo</li>
-//                                 <li className={styles.day}>Tu</li>
-//                                 <li className={styles.day}>We</li>
-//                                 <li className={styles.day}>Th</li>
-//                                 <li className={styles.day}>Fr</li>
-//                                 <li className={styles.day}>Sa</li>
-//                               </ul>
-//                             </div>
-//                           </div>
-//                           <div className={styles["calendars-container-8"]}>
-//                             <div className={styles["arrow-container"]}>
-//                               <div className={styles["prev-arrow-container"]}>
-//                                 <button className={styles["prev-arrow-button"]}>
-//                                   <span className={styles["prev-arrow-span"]}>
-//                                     &lt;
-//                                   </span>
-//                                 </button>
-//                               </div>
-//                               <div className={styles["next-arrow-container"]}>
-//                                 <button className={styles["next-arrow-button"]}>
-//                                   <span className={styles["next-arrow-span"]}>
-//                                     &gt;
-//                                   </span>
-//                                 </button>
-//                               </div>
-//                               <div
-//                                 className={styles["next-arrow-container"]}
-//                               ></div>
-//                             </div>
-//                             <div className={styles["calendar-lean-section"]}>
-//                               <div className={styles["calendar-wide-section"]}>
-//                                 <div className={styles["prev-month-section"]}>
-//                                   <div className={styles["month-container"]}>
-//                                     <div className={styles["single-calendar-header-container"]}>
-//                                       <div className={styles["date-arrow-container"]}>
-//                                         <h3 className={styles["month-year"]}>April 2023</h3>
-//                                       </div>
-//                                     </div>
-//                                     <table className={styles["days-table"]}>
-//                                       <tbody className={styles["days-table-body"]}>
-//                                         <tr className={styles["table-row"]}>
-//                                           <td className={styles.td1}></td>
-//                                           <td className={styles.td1}></td>
-//                                           <td className={styles.td1}></td>
-//                                           <td className={styles.td1}></td>
-//                                           <td className={styles.td1}></td>
-//                                           <td className={styles.td1}></td>
-//                                           <td className={styles.td2}>
-//                                             <div className={styles["td-div"]}></div>
-//                                           </td>
-//                                         </tr>
-//                                         <tr className={styles["table-row"]}></tr>
-//                                         <tr className={styles["table-row"]}></tr>
-//                                         <tr className={styles["table-row"]}></tr>
-//                                         <tr className={styles["table-row"]}></tr>
-//                                         <tr className={styles["table-row"]}></tr>
-//                                       </tbody>
-//                                     </table>
-//                                   </div>
-//                                 </div>
-//                                 <div className={styles["displayed-month-section"]}>
-//                                   <div className={styles["month-container"]}>
-//                                     <div className={styles["single-calendar-header-container"]}>
-//                                       <div className={styles["date-arrow-container"]}>
-//                                         <h3 className={styles["month-year"]}>May 2023</h3>
-//                                       </div>
-//                                     </div>
-//                                   </div>
-//                                 </div>
-//                                 <div className={styles["displayed-month-section"]}></div>
-//                                 <div className={styles["next-month-section"]}></div>
-//                               </div>
-//                             </div>
-//                           </div>
-//                         </div>
-//                       </div>
-//                     </div>
-//                   </div>
-//                 </div>
-//               </div>
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
-
-
-
+import Cal from "react-calendar";
+import "react-calendar/dist/Calendar.css";
+import "./Calendar.css";
 
 export default function Calendar() {
+  const [date, setDate] = useState(new Date());
   return (
     <div className={styles["calendar-container"]}>
       <div className={styles["top-border"]}></div>
@@ -153,8 +23,15 @@ export default function Calendar() {
       </div>
       <div className={styles["calendars-section"]}>
         <div className={styles["single-calendar-container"]}>
+          <Cal onChange={setDate} value={date} />
+        </div>
+        <div className={styles["single-calendar-container"]}>
+          <Cal value={new Date(date.getFullYear(), date.getMonth() + 1)} />
+        </div>
+      </div>
+      {/* <div className={styles["calendars-section"]}>
+        <div className={styles["single-calendar-container"]}>
           <div className={styles["single-calendar-header"]}>
-            {/* <div className={styles["header-left-arrow"]}>&lt;</div> */}
             <div className={styles["header-month"]}>May 2023</div>
           </div>
           <div className={styles["days-container"]}>
@@ -283,7 +160,6 @@ export default function Calendar() {
         <div className={styles["single-calendar-container"]}>
           <div className={styles["single-calendar-header"]}>
             <div className={styles["header-month"]}>June 2023</div>
-            {/* <div className={styles["header-right-arrow"]}>&gt;</div> */}
           </div>
           <div className={styles["days-container"]}>
             <div className={styles["days-list"]}>
@@ -406,9 +282,13 @@ export default function Calendar() {
             </tbody>
           </table>
         </div>
-      </div>
+      </div> */}
       <div className={styles["bottom-section"]}>
-        <img className={styles["keyboard"]} src="../../../../src/assets/keyboard.png" alt="keyboard" />
+        <img
+          className={styles["keyboard"]}
+          src="../../../../src/assets/keyboard.png"
+          alt="keyboard"
+        />
         <div className={styles["clear-dates"]}>Clear dates</div>
       </div>
     </div>
