@@ -26,7 +26,7 @@ GET http://localhost:3010/api/gallery
 
 
 ###Get users first and last name 
-GET http://localhost:4001/api/users/2
+GET http://localhost:4001/api/users/1
 
 ###Get host info
 GET http://localhost:4001/api/hosts/about/2

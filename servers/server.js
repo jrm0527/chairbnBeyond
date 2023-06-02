@@ -13,6 +13,21 @@ app.use(express.json());
 app.use(express.static("client"));
 app.use(cors());
 
+app.get("/api/users/:id", (req, res) => {
+  const id = req.params.id;
+  pool.query(
+    "SELECT fname, lname FROM users WHERE id = $1",
+    [id],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+        res.status(500).send("Error retrieving users from the database");
+      }
+      res.json(result.rows[0]);
+    }
+  );
+});
+
 app.get("/api/about/:id", (req, res) => {
   const id = req.params.id;
   pool.query(
